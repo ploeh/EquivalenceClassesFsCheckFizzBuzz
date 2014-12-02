@@ -6,6 +6,7 @@ namespace Ploeh.Samples
 
 open Xunit.Extensions
 open Swensen.Unquote
+open FsCheck.Xunit
 
 module FizzBuzz =
     let transform number = 
@@ -44,11 +45,8 @@ module Tests =
         let expected = "Buzz"
         test <@ expected = actual @>
 
-    [<Theory>]
-    [<InlineData(89)>]
-    [<InlineData(19)>]
-    [<InlineData(147326)>]
+    [<Property>]
     let ``FizzBuzz.transform returns FizzBuzz`` (number : int) =
         let actual = FizzBuzz.transform (number * 3 * 5)
         let expected = "FizzBuzz"
-        test <@ expected = actual @>
+        expected = actual
