@@ -32,7 +32,8 @@ module Tests =
 
     [<Property>]
     let ``FizzBuzz.transform returns Buzz`` (number : int) =
-        let actual = FizzBuzz.transform (number * 3 * 5 + 5)
+        (number % 5 = 0 && number % 3 <> 0) ==> lazy
+        let actual = FizzBuzz.transform number
         let expected = "Buzz"
         expected = actual
 
