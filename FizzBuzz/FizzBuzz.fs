@@ -36,11 +36,11 @@ module Tests =
 
 
     [<Theory>]
-    [<InlineData(20)>]
-    [<InlineData(35)>]
-    [<InlineData(50)>]
+    [<InlineData(1)>]
+    [<InlineData(2)>]
+    [<InlineData(3)>]
     let ``FizzBuzz.transform returns Buzz`` (number : int) =
-        let actual = FizzBuzz.transform number
+        let actual = FizzBuzz.transform (number * 3 * 5 + 5)
         let expected = "Buzz"
         test <@ expected = actual @>
 
