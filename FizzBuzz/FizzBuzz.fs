@@ -45,9 +45,9 @@ module Tests =
         test <@ expected = actual @>
 
     [<Theory>]
-    [<InlineData(1)>]
-    [<InlineData(2)>]
-    [<InlineData(3)>]
+    [<InlineData(89)>]
+    [<InlineData(19)>]
+    [<InlineData(147326)>]
     let ``FizzBuzz.transform returns FizzBuzz`` (number : int) =
         let actual = FizzBuzz.transform (number * 3 * 5)
         let expected = "FizzBuzz"
