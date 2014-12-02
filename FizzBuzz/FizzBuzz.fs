@@ -45,10 +45,10 @@ module Tests =
         test <@ expected = actual @>
 
     [<Theory>]
-    [<InlineData(15)>]
-    [<InlineData(30)>]
-    [<InlineData(45)>]
+    [<InlineData(1)>]
+    [<InlineData(2)>]
+    [<InlineData(3)>]
     let ``FizzBuzz.transform returns FizzBuzz`` (number : int) =
-        let actual = FizzBuzz.transform number
+        let actual = FizzBuzz.transform (number * 3 * 5)
         let expected = "FizzBuzz"
         test <@ expected = actual @>
