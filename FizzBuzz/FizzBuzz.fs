@@ -8,7 +8,10 @@ open Xunit.Extensions
 open Swensen.Unquote
 
 module FizzBuzz =
-    let transform number = number.ToString()
+    let transform number = 
+        match number with
+        | 3 -> "Fizz"
+        | _ -> number.ToString()
 
 module Tests =
     [<Theory>]
@@ -18,4 +21,11 @@ module Tests =
     let ``FizzBuzz.transform returns number`` (number : int) =
         let actual = FizzBuzz.transform number
         let expected = number.ToString()
+        test <@ expected = actual @>
+
+    [<Theory>]
+    [<InlineData(3)>]
+    let ``FizzBuzz.transform returns Fizz`` (number : int) =
+        let actual = FizzBuzz.transform number
+        let expected = "Fizz"
         test <@ expected = actual @>
