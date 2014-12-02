@@ -5,6 +5,7 @@
 namespace Ploeh.Samples
 
 open Xunit.Extensions
+open FsCheck
 open FsCheck.Xunit
 
 module FizzBuzz =
@@ -35,8 +36,9 @@ module Tests =
         let expected = "Buzz"
         expected = actual
 
-    [<Property>]
+    [<Property(MaxFail = 2000)>]
     let ``FizzBuzz.transform returns FizzBuzz`` (number : int) =
-        let actual = FizzBuzz.transform (number * 3 * 5)
+        number % 15 = 0 ==> lazy
+        let actual = FizzBuzz.transform number
         let expected = "FizzBuzz"
         expected = actual
