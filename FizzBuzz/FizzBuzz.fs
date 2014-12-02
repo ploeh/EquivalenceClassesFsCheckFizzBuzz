@@ -9,9 +9,10 @@ open Swensen.Unquote
 
 module FizzBuzz =
     let transform number = 
-        match number % 3, number % 5 with
-        | _, 0 -> "Buzz"
-        | 0, _ -> "Fizz"
+        match number % 3, number % 5, number with
+        | _, _, 15 -> "FizzBuzz"
+        | _, 0, _ -> "Buzz"
+        | 0, _, _ -> "Fizz"
         | _ -> number.ToString()
 
 module Tests =
@@ -41,4 +42,11 @@ module Tests =
     let ``FizzBuzz.transform returns Buzz`` (number : int) =
         let actual = FizzBuzz.transform number
         let expected = "Buzz"
+        test <@ expected = actual @>
+
+    [<Theory>]
+    [<InlineData(15)>]
+    let ``FizzBuzz.transform returns FizzBuzz`` (number : int) =
+        let actual = FizzBuzz.transform number
+        let expected = "FizzBuzz"
         test <@ expected = actual @>
