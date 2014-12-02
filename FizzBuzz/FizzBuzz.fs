@@ -39,9 +39,13 @@ module Tests =
         let expected = "Buzz"
         expected = actual
 
-    [<Property(MaxFail = 2000, QuietOnSuccess = true)>]
+    type DivisibleByThreeAndFive =
+        static member Int() =
+            Arb.Default.Int32()
+            |> Arb.mapFilter (fun x -> x * 3 * 5) (fun _ -> true)
+    
+    [<Property(Arbitrary = [| typeof<DivisibleByThreeAndFive> |], QuietOnSuccess = true)>]
     let ``FizzBuzz.transform returns FizzBuzz`` (number : int) =
-        number % 15 = 0 ==> lazy
         let actual = FizzBuzz.transform number
         let expected = "FizzBuzz"
         expected = actual
