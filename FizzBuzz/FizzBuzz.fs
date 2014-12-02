@@ -17,9 +17,9 @@ module FizzBuzz =
 
 module Tests =
     [<Theory>]
-    [<InlineData(1)>]
-    [<InlineData(2)>]
-    [<InlineData(4)>]
+    [<InlineData(16)>]
+    [<InlineData(31)>]
+    [<InlineData(46)>]
     let ``FizzBuzz.transform returns number`` (number : int) =
         let actual = FizzBuzz.transform number
         let expected = number.ToString()
