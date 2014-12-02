@@ -4,6 +4,9 @@
 
 namespace Ploeh.Samples
 
+open Xunit.Extensions
+open Swensen.Unquote
+
 module FizzBuzz =
     ()
 
