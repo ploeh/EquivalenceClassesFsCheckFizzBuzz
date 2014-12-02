@@ -10,7 +10,7 @@ open Swensen.Unquote
 module FizzBuzz =
     let transform number = 
         match number % 3, number with
-        | _, 5 -> "Buzz"
+        | _, 5 | _, 10 -> "Buzz"
         | 0, _ -> "Fizz"
         | _ -> number.ToString()
 
@@ -36,6 +36,7 @@ module Tests =
 
     [<Theory>]
     [<InlineData(5)>]
+    [<InlineData(10)>]
     let ``FizzBuzz.transform returns Buzz`` (number : int) =
         let actual = FizzBuzz.transform number
         let expected = "Buzz"
