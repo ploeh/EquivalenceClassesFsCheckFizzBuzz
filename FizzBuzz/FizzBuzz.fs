@@ -5,7 +5,6 @@
 namespace Ploeh.Samples
 
 open Xunit.Extensions
-open Swensen.Unquote
 open FsCheck.Xunit
 
 module FizzBuzz =
@@ -17,33 +16,24 @@ module FizzBuzz =
         | _ -> number.ToString()
 
 module Tests =
-    [<Theory>]
-    [<InlineData(1)>]
-    [<InlineData(2)>]
-    [<InlineData(3)>]
+    [<Property>]
     let ``FizzBuzz.transform returns number`` (number : int) =
         let actual = FizzBuzz.transform (number * 3 * 5 + 1)
         let expected = (number * 3 * 5 + 1).ToString()
-        test <@ expected = actual @>
+        expected = actual
 
-    [<Theory>]
-    [<InlineData(1)>]
-    [<InlineData(2)>]
-    [<InlineData(3)>]
+    [<Property>]
     let ``FizzBuzz.transform returns Fizz`` (number : int) =
         let actual = FizzBuzz.transform (number * 3 * 5 + 3)
         let expected = "Fizz"
-        test <@ expected = actual @>
+        expected = actual
 
 
-    [<Theory>]
-    [<InlineData(1)>]
-    [<InlineData(2)>]
-    [<InlineData(3)>]
+    [<Property>]
     let ``FizzBuzz.transform returns Buzz`` (number : int) =
         let actual = FizzBuzz.transform (number * 3 * 5 + 5)
         let expected = "Buzz"
-        test <@ expected = actual @>
+        expected = actual
 
     [<Property>]
     let ``FizzBuzz.transform returns FizzBuzz`` (number : int) =
