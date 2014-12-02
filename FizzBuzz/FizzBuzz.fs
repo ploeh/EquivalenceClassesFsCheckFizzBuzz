@@ -17,12 +17,12 @@ module FizzBuzz =
 
 module Tests =
     [<Theory>]
-    [<InlineData(16)>]
-    [<InlineData(31)>]
-    [<InlineData(46)>]
+    [<InlineData(1)>]
+    [<InlineData(2)>]
+    [<InlineData(3)>]
     let ``FizzBuzz.transform returns number`` (number : int) =
-        let actual = FizzBuzz.transform number
-        let expected = number.ToString()
+        let actual = FizzBuzz.transform (number * 3 * 5 + 1)
+        let expected = (number * 3 * 5 + 1).ToString()
         test <@ expected = actual @>
 
     [<Theory>]
