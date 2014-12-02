@@ -17,14 +17,14 @@ module FizzBuzz =
         | _ -> number.ToString()
 
 module Tests =
-    [<Property>]
+    [<Property(QuietOnSuccess = true)>]
     let ``FizzBuzz.transform returns number`` (number : int) =
         (number % 3 <> 0 && number % 5 <> 0) ==> lazy
         let actual = FizzBuzz.transform number
         let expected = number.ToString()
         expected = actual
 
-    [<Property>]
+    [<Property(QuietOnSuccess = true)>]
     let ``FizzBuzz.transform returns Fizz`` (number : int) =
         (number % 3 = 0 && number % 5 <> 0) ==> lazy
         let actual = FizzBuzz.transform number
@@ -32,14 +32,14 @@ module Tests =
         expected = actual
 
 
-    [<Property>]
+    [<Property(QuietOnSuccess = true)>]
     let ``FizzBuzz.transform returns Buzz`` (number : int) =
         (number % 5 = 0 && number % 3 <> 0) ==> lazy
         let actual = FizzBuzz.transform number
         let expected = "Buzz"
         expected = actual
 
-    [<Property(MaxFail = 2000)>]
+    [<Property(MaxFail = 2000, QuietOnSuccess = true)>]
     let ``FizzBuzz.transform returns FizzBuzz`` (number : int) =
         number % 15 = 0 ==> lazy
         let actual = FizzBuzz.transform number
