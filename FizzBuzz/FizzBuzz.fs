@@ -38,14 +38,14 @@ module Tests =
         let actual = FizzBuzz.transform number
         let expected = "Buzz"
         expected = actual
-
-    type DivisibleByThreeAndFive =
-        static member Int() =
-            Arb.Default.Int32()
-            |> Arb.mapFilter (fun x -> x * 3 * 5) (fun _ -> true)
     
-    [<Property(Arbitrary = [| typeof<DivisibleByThreeAndFive> |], QuietOnSuccess = true)>]
-    let ``FizzBuzz.transform returns FizzBuzz`` (number : int) =
-        let actual = FizzBuzz.transform number
-        let expected = "FizzBuzz"
-        expected = actual
+    [<Property(QuietOnSuccess = true)>]
+    let ``FizzBuzz.transform returns FizzBuzz`` () =
+        let fiveAndThrees =
+            Arb.generate<int> |> Gen.map ((*) (3 * 5)) |> Arb.fromGen
+        Prop.forAll fiveAndThrees (fun number ->
+
+            let actual = FizzBuzz.transform number
+
+            let expected = "FizzBuzz"
+            expected = actual)
