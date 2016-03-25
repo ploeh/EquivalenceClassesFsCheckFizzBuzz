@@ -43,9 +43,9 @@ module Tests =
     let ``FizzBuzz.transform returns FizzBuzz`` () =
         let fiveAndThrees =
             Arb.generate<int> |> Gen.map ((*) (3 * 5)) |> Arb.fromGen
-        Prop.forAll fiveAndThrees (fun number ->
+        Prop.forAll fiveAndThrees <| fun number ->
 
             let actual = FizzBuzz.transform number
 
             let expected = "FizzBuzz"
-            expected = actual)
+            expected = actual
